@@ -1,0 +1,29 @@
+{
+  "name": "vue-axios-plugin",
+  "version": "1.0.0",
+  "description": "A plugin for integrating axios to Vue",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/areyouse7en/vue-axios-plugin.git"
+  },
+  "keywords": [
+    "axios vue"
+  ],
+  "author": "Seven_Tao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/areyouse7en/vue-axios-plugin/issues"
+  },
+  "homepage": "https://github.com/areyouse7en/vue-axios-plugin#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "webpack": "^3.6.0"
+  }
+}
