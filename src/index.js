@@ -1,4 +1,3 @@
-// 封装axios插件
 const install = (Vue, axios, opts = {}) => {
 
   if (!axios) {
@@ -6,34 +5,41 @@ const install = (Vue, axios, opts = {}) => {
     return
   }
 
-  // 加上api前缀供代理转发
-  axios.defaults.baseURL = opts.baseURL || ''
-
-  const CheckStatus = ({
-    status,
-    data
-  }) => {
-    // 正常情况
-    if (status >= 200 || status < 400) {
-      return data
-    }
-    // 异常情况
-    return {
-      code: -400,
-      success: false,
-      msg: 'fatal error'
-    }
+  // 基础域名和前缀
+  if (opts.baseURL) {
+    axios.defaults.baseURL = opts.baseURL
   }
 
+  // 超时时间
+  if (opts.timeout) {
+    axios.defaults.timeout = opts.timeout
+  }
 
+  // 请求时拦截
+  if (opts.before) {
+    axios.interceptors.request.use(config => {
+      return opts.before(config)
+    }, error => {
+      return Promise.reject(error)
+    })
+  }
+
+  // 响应时的拦截
+  if (opts.after) {
+    axios.interceptors.response.use(res => {
+      return opts.after(res)
+    }, error => {
+      return Promise.reject(error)
+    })
+  }
+
+  // 添加实例
   Vue.prototype.$http = {
     get(url, data) {
       return axios({
         method: 'get',
         url,
         data
-      }).then(res => {
-        return CheckStatus(res)
       })
     },
     post(url, params) {
@@ -41,20 +47,21 @@ const install = (Vue, axios, opts = {}) => {
         method: 'post',
         url,
         params
-      }).then(res => {
-        return CheckStatus(res)
       })
     }
   }
-
 }
-
 
 if (typeof window !== 'undefined' && window.Vue && window.axios) {
   Vue.use({
     install
   }, window.axios)
-}
-module.exports = {
-  install
+} else if (typeof define == "function" && define.amd) {
+  define([], function () {
+    return plugin
+  })
+} else {
+  module.exports = {
+    install
+  }
 }
