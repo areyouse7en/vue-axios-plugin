@@ -1,8 +1,8 @@
 {
-  "name": "vue-axios-plugin",
+  "name": "qf-vue-axios",
   "version": "1.0.0",
   "description": "A plugin for integrating axios to Vue",
-  "main": "index.js",
+  "main": "dist/vue-axios.min.js",
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack -p"

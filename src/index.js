@@ -7,7 +7,7 @@ const install = (Vue, axios, opts = {}) => {
   }
 
   // 加上api前缀供代理转发
-  // axios.defaults.baseURL = '/api'
+  axios.defaults.baseURL = opts.baseURL || ''
 
   const CheckStatus = ({
     status,

@@ -4,7 +4,7 @@ const config = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.js',
   output: {
-    filename: 'vue-axios.js',
+    filename: 'vue-axios.min.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
