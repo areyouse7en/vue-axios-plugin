@@ -56,10 +56,6 @@ if (typeof window !== 'undefined' && window.Vue && window.axios) {
   Vue.use({
     install
   }, window.axios)
-} else if (typeof define == "function" && define.amd) {
-  define([], function () {
-    return plugin
-  })
 } else {
   module.exports = {
     install

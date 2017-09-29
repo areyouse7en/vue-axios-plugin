@@ -33,7 +33,7 @@ const opts = {
   },
   after(res){
     someloading.end()
-    if(res.status>=200&&res.status<400>){
+    if(res.status>=200&&res.status<400){
       return res.data
     }else{
       return {
