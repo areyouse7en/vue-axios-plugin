@@ -38,14 +38,14 @@
 
     // 添加实例
     Vue.prototype.$http = {
-      get(url, data) {
+      post(url, data) {
         return axios({
           method: 'get',
           url,
           data
         })
       },
-      post(url, params) {
+      get(url, params) {
         return axios({
           method: 'post',
           url,

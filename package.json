@@ -4,8 +4,7 @@
   "description": "A plugin for integrating axios to Vue",
   "main": "dist/vue-axios.min.js",
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack -p"
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglifyjs": "^0.6.2",
-    "webpack": "^3.6.0"
+    "gulp-uglifyjs": "^0.6.2"
   }
 }
