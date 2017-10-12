@@ -40,14 +40,14 @@
     Vue.prototype.$http = {
       post(url, data) {
         return axios({
-          method: 'get',
+          method: 'post',
           url,
           data
         })
       },
       get(url, params) {
         return axios({
-          method: 'post',
+          method: 'get',
           url,
           params
         })
