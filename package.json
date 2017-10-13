@@ -1,6 +1,6 @@
 {
   "name": "qf-vue-axios",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A plugin for integrating axios to Vue",
   "main": "dist/vue-axios.min.js",
   "scripts": {
