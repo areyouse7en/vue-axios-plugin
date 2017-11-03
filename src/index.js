@@ -47,11 +47,31 @@
           data
         })
       },
-      get(url, params) {
+      put(url, id, data = {}) {
+        return instance({
+          method: 'put',
+          url: `${url}/${id}`,
+          data
+        })
+      },
+      patch(url, id, data = {}) {
+        return instance({
+          method: 'patch',
+          url: `${url}/${id}`,
+          data
+        })
+      },
+      get(url, params = {}) {
         return instance({
           method: 'get',
           url,
           params
+        })
+      },
+      delete(url, id) {
+        return instance({
+          method: 'delete',
+          url: `${url}/${id}`,
         })
       }
     }

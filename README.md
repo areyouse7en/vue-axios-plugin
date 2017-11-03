@@ -49,16 +49,39 @@ Vue.use(httpPlugin, axios, opts)
 调用
 ``` javascript
 methods:{
-  async getData(){
-    const data = await this.$http.get(url)
-    console.log(data)
-  },
-  async postData(){
+  async TryGet() {
     const params = {
-      name:'qf'
+      _page: 1,
+      _limit: 10
     }
-    const data = await this.$http.post(url,params)
-    console.log(data)
+    const result = await this.$http.get(testUrl, params)
+  },
+  async TryPost() {
+    const params = {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }
+    const result = await this.$http.post(testUrl, params)
+  },
+  async TryPut() {
+    const id = 2,
+      params = {
+        title: 'boo',
+        body: 'car'
+      }
+    const result = await this.$http.put(testUrl, id, params)
+  },
+  async TryPatch() {
+    const id = 1,
+      params = {
+        body: 'just modify body'
+      }
+    const result = await this.$http.patch(testUrl, id, params)
+  },
+  async TryDelete() {
+    const id = 1
+    const result = await this.$http.delete(testUrl, id)
   }
 }
 
@@ -66,8 +89,8 @@ methods:{
 ### 普通script引用
 只需跟在vue和axios后面引用就行了
 ``` html
-<script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
-<script src="https://unpkg.com/axios@0.16.2/dist/axios.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios"></script>
 <script src="../dist/vue-axios.min.js"></script>
 ```
 

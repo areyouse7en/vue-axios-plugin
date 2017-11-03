@@ -9,25 +9,69 @@
 </head>
 
 <body>
-  <div id="app"></div>
-  <script src="https://unpkg.com/vue@2.4.4/dist/vue.js"></script>
+  <div id="app">
+    <button @click="TryGet">TryGet</button>
+    <button @click="TryPost">TryPost</button>
+    <button @click="TryPut">TryPut</button>
+    <button @click="TryPatch">TryPatch</button>
+    <button @click="TryDelete">TryDelete</button>
+    <div>{{result}}</div>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios@0.16.2/dist/axios.js"></script>
-  <script src="./dist/vue-axios.js"></script>
+  <script src="./dist/vue-axios.min.js"></script>
   <script>
+    var testUrl = 'http://jsonplaceholder.typicode.com/posts'
     new Vue({
       el: '#app',
+      data: {
+        result: ''
+      },
       methods: {
-        async GetUsers() {
+        async TryGet() {
+          this.result = 'loading...'
           const params = {
             _page: 1,
             _limit: 10
           }
-          const result = this.$http.get('http://jsonplaceholder.typicode.com/users/', params)
-          console.log(result)
+          const result = await this.$http.get(testUrl, params)
+          this.result = result.data
+        },
+        async TryPost() {
+          this.result = 'loading...'
+          const params = {
+            title: 'foo',
+            body: 'bar',
+            userId: 1
+          }
+          const result = await this.$http.post(testUrl, params)
+          this.result = result.data
+        },
+        async TryPut() {
+          this.result = 'loading...'
+          const id = 2,
+            params = {
+              title: 'boo',
+              body: 'car'
+            }
+          const result = await this.$http.put(testUrl, id, params)
+          this.result = result.data
+        },
+        async TryPatch() {
+          this.result = 'loading...'
+          const id = 1,
+            params = {
+              body: 'just modify body'
+            }
+          const result = await this.$http.patch(testUrl, id, params)
+          this.result = result.data
+        },
+        async TryDelete() {
+          this.result = 'loading...'
+          const id = 1
+          const result = await this.$http.delete(testUrl, id)
+          this.result = result.data
         }
-      },
-      mounted() {
-        this.GetUsers()
       }
     })
   </script>
