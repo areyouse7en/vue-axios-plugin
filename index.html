@@ -17,8 +17,8 @@
     <button @click="TryDelete">TryDelete</button>
     <div>{{result}}</div>
   </div>
-  <script src="https://unpkg.com/vue"></script>
-  <script src="https://unpkg.com/axios@0.16.2/dist/axios.js"></script>
+  <script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <script src="./dist/vue-axios.min.js"></script>
   <script>
     var testUrl = 'http://jsonplaceholder.typicode.com/posts'
@@ -30,19 +30,15 @@
       methods: {
         async TryGet() {
           this.result = 'loading...'
-          const params = {
-            _page: 1,
-            _limit: 10
-          }
-          const result = await this.$http.get(testUrl, params)
+          const id = 1
+          const result = await this.$http.get(testUrl, id)
           this.result = result.data
         },
         async TryPost() {
           this.result = 'loading...'
           const params = {
-            title: 'foo',
-            body: 'bar',
-            userId: 1
+            title: 'boo',
+            body: 'car'
           }
           const result = await this.$http.post(testUrl, params)
           this.result = result.data

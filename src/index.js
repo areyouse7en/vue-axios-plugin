@@ -15,6 +15,11 @@
       instance.defaults.baseURL = opts.baseURL
     }
 
+    // 自定义头部
+    if (opts.headers) {
+      instance.defaults.headers = opts.headers
+    }
+
     // 超时时间
     if (opts.timeout) {
       instance.defaults.timeout = opts.timeout
@@ -61,10 +66,10 @@
           data
         })
       },
-      get(url, params = {}) {
+      get(url, id, params = {}) {
         return instance({
           method: 'get',
-          url,
+          url: `${url}/${id}`,
           params
         })
       },

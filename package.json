@@ -21,11 +21,10 @@
   "homepage": "https://github.com/areyouse7en/vue-axios-plugin#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
+    "gulp-babel": "^7.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglifyjs": "^0.6.2"
+    "gulp-uglify": "^3.0.0"
   }
 }
