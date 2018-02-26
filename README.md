@@ -8,6 +8,7 @@
 npm i -S vue axios qf-vue-axios
 或
 cnpm i -S vue axios qf-vue-axios
+yarn add vue axios qf-vue-axios -S
 ```
 引用
 ``` javascript
@@ -21,21 +22,26 @@ Vue.use(httpPlugin, axios)
 >也可直接通过[axios原始设置方法](https://github.com/axios/axios)进行设置
 
 ``` javascript
-const opts = {
+const config = {
   baseURL:'/api',
   timeout:5000,
-  before(config){
+  before(opts){
     someloading.start()
     if(token){
-      config.headers['Authorization'] = token
+      opts.headers['Authorization'] = token
     }
-    return config
+    return opts
   },
-  after(res){
+  after({
+    status,
+    data
+  }) {
     someloading.end()
-    if(res.status>=200&&res.status<400){
-      return res.data
+    if (status >= 200 && status < 400) {
+      // 如果http状态码正常，则直接返回数据
+      return data
     }else{
+      // 异常状态
       return {
         code:-404,
         success:false,
@@ -44,17 +50,14 @@ const opts = {
     }
   }
 }
-Vue.use(httpPlugin, axios, opts)
+Vue.use(httpPlugin, axios, config)
 ```
 调用
 ``` javascript
 methods:{
   async TryGet() {
-    const params = {
-      _page: 1,
-      _limit: 10
-    }
-    const result = await this.$http.get(testUrl, params)
+    const id = 1
+    const result = await this.$http.get(url, id)
   },
   async TryPost() {
     const params = {
@@ -62,7 +65,7 @@ methods:{
       body: 'bar',
       userId: 1
     }
-    const result = await this.$http.post(testUrl, params)
+    const result = await this.$http.post(url, params)
   },
   async TryPut() {
     const id = 2,
@@ -70,18 +73,18 @@ methods:{
         title: 'boo',
         body: 'car'
       }
-    const result = await this.$http.put(testUrl, id, params)
+    const result = await this.$http.put(url, id, params)
   },
   async TryPatch() {
     const id = 1,
       params = {
         body: 'just modify body'
       }
-    const result = await this.$http.patch(testUrl, id, params)
+    const result = await this.$http.patch(url, id, params)
   },
   async TryDelete() {
     const id = 1
-    const result = await this.$http.delete(testUrl, id)
+    const result = await this.$http.delete(url, id)
   }
 }
 
